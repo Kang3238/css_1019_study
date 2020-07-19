@@ -1,0 +1,75 @@
+@import "_variables";
+
+*{
+  box-sizing: border-box;
+}
+body{
+  bottom: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  
+  height: 100vh; //화면 전체 크기 잡아주기
+  background-color: $bg;
+  display: grid;
+  grid-template-columns: 1.5fr 1.9fr 1.5fr;
+  grid-template-rows: 1fr 5fr 1fr; //크게 그냥 아래위 3등분 각 각 안에서 한번더 나누면됨
+  gap: 1px;
+  div , span{ //뒷 배경을 골드로 주고 앞부분을 흰색으로 덮은 다음 gap으로 줄을 주려고함 그래서 이렇게 함
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $bg;
+    font-size: 22px;
+    text-transform: uppercase;
+  }
+  .menu{//2번째 칼럼 에서 시작하게 만듬
+    grid-column-start: -2;
+    
+  }
+  .center_image{ //가운데 이미지 부분 시작 칼럼 두개로 가운데를 병합 하고 이미지를 넣고 사이즈와 포지션 을 설정 
+    grid-column: 2 / -2;
+    grid-row: 2 / -2;
+    background-image: url("https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80");
+    background-size: cover; //사이즈랑 포지션 속성값 처음봄
+    background-position: center;
+  }
+  .number_row{ //숫자 들어가는 그리드 부분
+    background-color: $bg;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: stretch; //align item 과 justify content 어디서 쓰는지 감이 안잡힘 이거 꼭 찾아보기
+    gap: 1px;
+    .number{
+      display: flex;
+      background-color: white;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: color 0.15s linear ,background-color 0.15s linear; //호버 되었을때 변하는 트랜지션 부분 완전 헷갈림 
+      &:hover{
+        background-color: $bg;
+        color: white;
+      }
+    }
+    
+  }
+  .scrolling_text{
+    grid-column-start: 2;
+    white-space: nowrap; //이것도 처음보는거 한번 찾아보기
+    overflow: hidden; //이것도 마찬가지
+    span{
+      animation: scrollText 5s linear infinite forwards; //애니메이션 부분은 고질병 인듯 ㅋㅋ 
+    }
+  }
+}
+@keyframes scrollText{//키프레임 , 애니메이션 부분 완전 헷갈림
+  0%{
+    transform: translateX(-100px);
+  }
+  50%{
+    transform: translateX(100px);
+  }
+  100%{
+    transform: translateX(-100px);
+  }
+}
